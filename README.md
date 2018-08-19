@@ -23,6 +23,42 @@ STEP 1:  Open config.h with keil and make edits to set your selections in 6 cat
          
 STEP 2:  Open pid.c with keil and either edit pids to your preferred values or select a set of pids that I have prepared.   I plan to keep all my tunes in pid.c and will have them labeled and noted with the associated filter settings for each type of build.  All you have to do to use one of my tunes is uncomment the pid group you want to use and make sure the others are commented out.  I will keep whatever pids I'm using updated here if I change them and the default set will always be for a whoop with fpv gear installed.  Setpoint weight values for P are also just below pids - if you want a sharper stick feel on one of my tunes then change these values closer to 1.0.  Stick Accelerator and transition values are here too.  There are two profiles you can populate which are switchable via auxillary channel.
 
+## brianquad Notes - Additions for Analog Aux channels
+Last major update 2018-08-19
+
+This option (controlled in config.h) adds support for Analog Aux channels to control certain pre-programmed features. These are intended to be used with a transmitter with knobs to easily alter parameters while flying. These are controlled by #define lines in config.h.
+
+Initially, these features include:
+1. Analog Rate Multiplier (ANALOG_RATE_MULT)
+   - Use a tranmitter knob to control your rates to help find your sweet spot without flashing in between
+   - Set your MAX_RATE and MAX_RATE_YAW to the highest rate you might want
+   - Use the assigned knob to adjust beween 0 and 100% of that rate in a linear scale
+     - Putting the knob at its middle point will give you half of your MAX_RATE
+2. Analog Max Angle for Level mode (ANALOG_MAX_ANGLE)
+   - When in Angle/Level mode, the maximum angle the quad is allowed to tilt (controlling your max speed, etc.) is set by the LEVEL_MAX_ANGLE define
+   - When enabling ANALOG_MAX_ANGLE, the LEVEL_MAX_ANGLE define is ignored
+   - The knob controls the maximum angle from 0 to 90 degrees in a linear scale
+     - Putting the knob at its middle point will give you a maximum angle of 45 degrees
+3. PID adjustments (ANALOG_RP_P, etc.)
+   - WARNING: This is an experimental feature that has not yet been tested, mostly meant to start a conversation on how this kind of feature should really be done. I'm sure there are better ways to do live PID adjustment with a couple of analog knobs!
+   - Assigning a knob to one of these defines lets you alter that PID setting from 0X to 2X of the current setting in pid.c
+   - The PID adjustments are _not_ saved. To save a new value, you'll have to check where your knob it and apply that setting manually in pid.c
+   - Each of the P, I, or D for Roll, Pitch, and Yaw can be selected in config.h, or Roll and Pitch P, I, or D can be selected together on one knob
+   
+###How do you access/assign analog channels? What channels can be used?
+
+For Sbus and DSM, you can assign any of the channels to use as analog aux channels.
+
+For Bayang, you can use a modified version of the Bayang protocol I've made to the Multiprotocol Tx and Deviation Tx firmware that adds two 8-bit analog channels to the protocol.
+
+The Multiprotocol module uses channels 14 and 15 for these analog channels. Set the "Option/Telemetry" value for the Bayang protocol on the Taranis to 2 or 3 (2 to get only the analog channels, 3 to get both Telemetry and the analog channels).
+
+Deviation uses channels 11 and 12. Enable the Aux Analog option for the Bayang protocol.
+
+These modifications can be found on the analog aux branch in my forks on GitHub (for now, you _must_ select the branch rather than master):
+	https://github.com/brianquad/DIY-Multiprotocol-TX-Module/tree/bayang-analog-aux-opentx
+	https://github.com/brianquad/deviation/tree/bayang-analog-aux
+
 ## Current Experimental Features and DEVIATIONS FROM STOCK SILVERWARE 
 
  - Target Selection:  define your board type and hardware settings are automatically selected for E011 (OLD STYLE), Bwhoop, bwhoop pro, E011c, beta fpv lite, and ALIENWHOOP ZER0.  
