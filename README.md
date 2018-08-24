@@ -26,7 +26,7 @@ STEP 2:  Open pid.c with keil and either edit pids to your preferred values or 
 ## brianquad Notes - Additions for Analog Aux channels
 Last major update 2018-08-19
 
-This option (controlled in config.h) adds support for Analog Aux channels to control certain pre-programmed features. These are intended to be used with a transmitter with knobs to easily alter parameters while flying. These are controlled by #define lines in config.h.
+This option (controlled in config.h) adds support for Analog Aux channels to control certain pre-programmed features. These are intended to be used with a transmitter with knobs/sliders to easily alter parameters while flying. These are controlled by #define lines in config.h. Enable these features by uncommenting the "#define USE_ANALOG_AUX" line. Commenting that line disables all analog aux channels at the compiler level, meaning they do not make the built firmware bigger or slower than it was before.
 
 Initially, these features include:
 1. Analog Rate Multiplier (ANALOG_RATE_MULT)
@@ -40,11 +40,12 @@ Initially, these features include:
    - The knob controls the maximum angle from 0 to 90 degrees in a linear scale
      - Putting the knob at its middle point will give you a maximum angle of 45 degrees
 3. PID adjustments (ANALOG_RP_P, etc.)
-   - WARNING: This is an experimental feature that has not yet been tested, mostly meant to start a conversation on how this kind of feature should really be done. I'm sure there are better ways to do live PID adjustment with a couple of analog knobs!
-   - Assigning a knob to one of these defines lets you alter that PID setting from 0X to 2X of the current setting in pid.c
-   - The PID adjustments are _not_ saved. To save a new value, you'll have to check where your knob it and apply that setting manually in pid.c
+   - Assigning a knob to one of these defines lets you alter that PID setting from 0.5X to 1.5X of the current setting in pid.c
    - Each of the P, I, or D for Roll, Pitch, and Yaw can be selected in config.h, or Roll and Pitch P, I, or D can be selected together on one knob
-   
+   - The PID adjustments can be saved, just like the classic Silverware gesture PID adjustments. To save a new value, use the Down Down Down (DDD) gesture to write the current PID values to flash (including your new one(s)) and re-center your adjusted values. This means to keep your new value after saving, you must re-center your knob/slider.
+
+These initial features are mostly meant to start a conversation on how Analog Aux channels could be used. For example, I'm sure there are better ways to do live PID adjustment with a couple of analog knobs!
+
 ###How do you access/assign analog channels? What channels can be used?
 
 For Sbus and DSM, you can assign any of the channels to use as analog aux channels.
@@ -55,8 +56,10 @@ The Multiprotocol module uses channels 14 and 15 for these analog channels. Set 
 
 Deviation uses channels 11 and 12. Enable the Aux Analog option for the Bayang protocol.
 
+For both the Multiprotocol module and Deviation, Silverware will not bind with a transmitter that does not have matching options (both Telemetry and Analog Aux channels).
+
 These modifications can be found on the analog aux branch in my forks on GitHub (for now, you _must_ select the branch rather than master):
-	https://github.com/brianquad/DIY-Multiprotocol-TX-Module/tree/bayang-analog-aux-opentx
+	https://github.com/brianquad/DIY-Multiprotocol-TX-Module/tree/bayang-analog-aux
 	https://github.com/brianquad/deviation/tree/bayang-analog-aux
 
 ## Current Experimental Features and DEVIATIONS FROM STOCK SILVERWARE 

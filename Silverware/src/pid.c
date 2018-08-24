@@ -178,62 +178,62 @@ void apply_analog_aux_to_pids()
     // Roll PIDs
 #ifdef ANALOG_R_P
     if (aux_analogchange[ANALOG_R_P])
-        pidkp[0] = pidkp_init[0] * aux_analog[ANALOG_R_P] * 2.0f;
+        pidkp[0] = pidkp_init[0] * (aux_analog[ANALOG_R_P] + 0.5f);
 #endif
 #ifdef ANALOG_R_I
     if (aux_analogchange[ANALOG_R_I])
-        pidki[0] = pidki_init[0] * aux_analog[ANALOG_R_I] * 2.0f;
+        pidki[0] = pidki_init[0] * (aux_analog[ANALOG_R_I] + 0.5f);
 #endif
 #ifdef ANALOG_R_D
     if (aux_analogchange[ANALOG_R_D])
-        pidkd[0] = pidkd_init[0] * aux_analog[ANALOG_R_D] * 2.0f;
+        pidkd[0] = pidkd_init[0] * (aux_analog[ANALOG_R_D] + 0.5f);
 #endif
 
     // Pitch PIDs
 #ifdef ANALOG_P_P
     if (aux_analogchange[ANALOG_P_P])
-        pidkp[1] = pidkp_init[1] * aux_analog[ANALOG_P_P] * 2.0f;
+        pidkp[1] = pidkp_init[1] * (aux_analog[ANALOG_P_P] + 0.5f);
 #endif
 #ifdef ANALOG_P_I
     if (aux_analogchange[ANALOG_P_I])
-        pidki[1] = pidki_init[1] * aux_analog[ANALOG_P_I] * 2.0f;
+        pidki[1] = pidki_init[1] * (aux_analog[ANALOG_P_I] + 0.5f);
 #endif
 #ifdef ANALOG_P_D
     if (aux_analogchange[ANALOG_P_D])
-        pidkd[1] = pidkd_init[1] * aux_analog[ANALOG_P_D] * 2.0f;
+        pidkd[1] = pidkd_init[1] * (aux_analog[ANALOG_P_D] + 0.5f);
 #endif
 
     // Yaw PIDs
 #ifdef ANALOG_Y_P
     if (aux_analogchange[ANALOG_Y_P])
-        pidkp[2] = pidkp_init[2] * aux_analog[ANALOG_Y_P] * 2.0f;
+        pidkp[2] = pidkp_init[2] * (aux_analog[ANALOG_Y_P] + 0.5f);
 #endif
 #ifdef ANALOG_Y_I
     if (aux_analogchange[ANALOG_Y_I])
-        pidki[2] = pidki_init[2] * aux_analog[ANALOG_Y_I] * 2.0f;
+        pidki[2] = pidki_init[2] * (aux_analog[ANALOG_Y_I] + 0.5f);
 #endif
 #ifdef ANALOG_Y_D
     if (aux_analogchange[ANALOG_Y_D])
-        pidkd[2] = pidkd_init[2] * aux_analog[ANALOG_Y_D] * 2.0f;
+        pidkd[2] = pidkd_init[2] * (aux_analog[ANALOG_Y_D] + 0.5f);
 #endif
 
     // Combined Roll and Pitch PIDs
 #ifdef ANALOG_RP_P
     if (aux_analogchange[ANALOG_RP_P]) {
-        pidkp[0] = pidkp_init[0] * aux_analog[ANALOG_RP_P] * 2.0f;
-        pidkp[1] = pidkp_init[1] * aux_analog[ANALOG_RP_P] * 2.0f;
+        pidkp[0] = pidkp_init[0] * (aux_analog[ANALOG_RP_P] + 0.5f);
+        pidkp[1] = pidkp_init[1] * (aux_analog[ANALOG_RP_P] + 0.5f);
     }
 #endif
 #ifdef ANALOG_RP_I
     if (aux_analogchange[ANALOG_RP_I]) {
-        pidki[0] = pidki_init[0] * aux_analog[ANALOG_RP_I] * 2.0f;
-        pidki[1] = pidki_init[1] * aux_analog[ANALOG_RP_I] * 2.0f;
+        pidki[0] = pidki_init[0] * (aux_analog[ANALOG_RP_I] + 0.5f);
+        pidki[1] = pidki_init[1] * (aux_analog[ANALOG_RP_I] + 0.5f);
     }
 #endif
 #ifdef ANALOG_RP_D
     if (aux_analogchange[ANALOG_RP_D]) {
-        pidkd[0] = pidkd_init[0] * aux_analog[ANALOG_RP_D] * 2.0f;
-        pidkd[1] = pidkd_init[1] * aux_analog[ANALOG_RP_D] * 2.0f;
+        pidkd[0] = pidkd_init[0] * (aux_analog[ANALOG_RP_D] + 0.5f);
+        pidkd[1] = pidkd_init[1] * (aux_analog[ANALOG_RP_D] + 0.5f);
     }
 #endif
 }
@@ -437,10 +437,9 @@ void pid_precalc()
 #endif
 }
 
-// call at quad startup, only once
+// call at quad startup, and when wanting to save pids
 void pid_init()
 {
-#ifdef USE_ANALOG_AUX
   // save initial PID values
   pidkp_init[0] = pidkp[0]; // Roll
   pidkp_init[1] = pidkp[1]; // Pitch
@@ -453,7 +452,6 @@ void pid_init()
   pidkd_init[0] = pidkd[0];
   pidkd_init[1] = pidkd[1];
   pidkd_init[2] = pidkd[2];
-#endif
 }
 
 

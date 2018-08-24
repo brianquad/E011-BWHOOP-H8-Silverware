@@ -153,8 +153,6 @@ int main(void)
 #ifdef ENABLE_OVERCLOCK
 clk_init();
 #endif
-
-  pid_init();
 	
   gpio_init();	
   ledon(255);									//Turn on LED during boot so that if a delay is used as part of using programming pins for other functions, the FC does not appear inactive while programming times out
@@ -210,7 +208,12 @@ aux[CH_AUX1] = 1;
 #endif
 
 
-	
+#ifdef USE_ANALOG_AUX
+  // saves initial pid values - after flash loading
+  pid_init();
+#endif
+
+
 	rx_init();
 
 	

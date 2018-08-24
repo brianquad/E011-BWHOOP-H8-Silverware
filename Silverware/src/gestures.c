@@ -48,8 +48,14 @@ void gestures( void)
                 extern int number_of_increments[3][3];
                 for( int i = 0 ; i < 3 ; i++)
                     for( int j = 0 ; j < 3 ; j++)
-                        number_of_increments[i][j] = 0; 
-                #endif
+                        number_of_increments[i][j] = 0;
+                
+                #ifdef USE_ANALOG_AUX
+                // reset analog aux pids array
+                pid_init();
+                #endif // USE_ANALOG_AUX
+
+                #endif // FLASH_SAVE1
 			    // reset loop time 
 			    extern unsigned long lastlooptime;
 			    lastlooptime = gettime();

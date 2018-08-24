@@ -1062,15 +1062,17 @@ char trims[4];
                 // Assign all analog versions of channels based on boolean channel data
                 for (int i = 0; i < AUXNUMBER - 2; i++)
                 {
-                  aux_analog[i] = aux[i] ? 1.0 : 0.0;
+                  if (i == CH_ANA_AUX1)
+                    aux_analog[CH_ANA_AUX1] = bytetodata(rxdata[1]);
+                  else if (i == CH_ANA_AUX2)
+                    aux_analog[CH_ANA_AUX2] = bytetodata(rxdata[13]);
+                  else
+                    aux_analog[i] = aux[i] ? 1.0 : 0.0;
                   aux_analogchange[i] = 0;
                   if (lastaux_analog[i] != aux_analog[i])
                     aux_analogchange[i] = 1;
                   lastaux_analog[i] = aux_analog[i];
                 }
-                // Override the two actual analog channels
-                aux_analog[CH_ANA_AUX1] = bytetodata(rxdata[1]);
-                aux_analog[CH_ANA_AUX2] = bytetodata(rxdata[13]);
 #endif
 
 							if (aux[LEVELMODE]){
@@ -1140,7 +1142,11 @@ void checkrx(void)
 		    {		// rx startup , bind mode
 			    xn_readpayload(rxdata, 15);
 
+#ifdef USE_ANALOG_AUX
+			    if (rxdata[0] == 162)
+#else
 			    if (rxdata[0] == 164)
+#endif
 			      {	// bind packet
 				      rfchannel[0] = rxdata[6];
 				      rfchannel[1] = rxdata[7];
