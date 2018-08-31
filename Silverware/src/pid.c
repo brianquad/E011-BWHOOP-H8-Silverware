@@ -236,6 +236,16 @@ void apply_analog_aux_to_pids()
         pidkd[1] = pidkd_init[1] * (aux_analog[ANALOG_RP_D] + 0.5f);
     }
 #endif
+
+    // Combined Roll and Pitch P and D
+#ifdef ANALOG_RP_PD
+    if (aux_analogchange[ANALOG_RP_PD]) {
+        pidkp[0] = pidkp_init[0] * (aux_analog[ANALOG_RP_PD] + 0.5f);
+        pidkp[1] = pidkp_init[1] * (aux_analog[ANALOG_RP_PD] + 0.5f);
+        pidkd[0] = pidkd_init[0] * (aux_analog[ANALOG_RP_PD] + 0.5f);
+        pidkd[1] = pidkd_init[1] * (aux_analog[ANALOG_RP_PD] + 0.5f);
+    }
+#endif
 }
 
 

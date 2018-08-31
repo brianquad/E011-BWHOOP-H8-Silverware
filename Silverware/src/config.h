@@ -113,18 +113,19 @@
 // comment to disable
 #define ANALOG_RATE_MULT CHAN_14
 #define ANALOG_MAX_ANGLE CHAN_15
-//#define ANALOG_RP_P CHAN_14 // Adjust Roll and Pitch together
-//#define ANALOG_RP_I CHAN_14
-//#define ANALOG_RP_D CHAN_15
-//#define ANALOG_R_P CHAN_14 // Adjust Roll only
-//#define ANALOG_R_I CHAN_14
-//#define ANALOG_R_D CHAN_15
-//#define ANALOG_P_P CHAN_14 // Adjust Pitch only
-//#define ANALOG_P_I CHAN_14
-//#define ANALOG_P_D CHAN_15
-//#define ANALOG_Y_P CHAN_14 // Adjust Yaw only
-//#define ANALOG_Y_I CHAN_14
-//#define ANALOG_Y_D CHAN_15
+//#define ANALOG_RP_P  CHAN_14 // Adjust Roll and Pitch together
+//#define ANALOG_RP_I  CHAN_14
+//#define ANALOG_RP_D  CHAN_15
+//#define ANALOG_RP_PD CHAN_15 // Adjust Roll and Pitch P & D together
+//#define ANALOG_R_P   CHAN_14 // Adjust Roll only
+//#define ANALOG_R_I   CHAN_14
+//#define ANALOG_R_D   CHAN_15
+//#define ANALOG_P_P   CHAN_14 // Adjust Pitch only
+//#define ANALOG_P_I   CHAN_14
+//#define ANALOG_P_D   CHAN_15
+//#define ANALOG_Y_P   CHAN_14 // Adjust Yaw only
+//#define ANALOG_Y_I   CHAN_14
+//#define ANALOG_Y_D   CHAN_15
 
 
 //**********************************************************************************************************************
