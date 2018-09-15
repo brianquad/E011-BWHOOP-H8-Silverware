@@ -62,6 +62,20 @@ These modifications can be found on the analog aux branch in my forks on GitHub 
 	https://github.com/brianquad/DIY-Multiprotocol-TX-Module/tree/bayang-analog-aux
 	https://github.com/brianquad/deviation/tree/bayang-analog-aux
 
+####How to use Trim Switches for Silverware Analog Aux channels in Deviation
+VIRTUAL POT (Example, by Ian444):
+
+1. Say you want to assign LV (left vertical) trim switch to drive the radio channel 11 as if it were a pot, each click driving the pot in one direction or the other, using Virt3 as the intermediate link. (It could be any radio channel and use any free virtual channel.)
+
+2. Go into the TRIMS menu and set the LV trim to Virt3, so replace "whatever-is-there" with Virt3 i.e. it should look like: Virt3/step size/TRIMLV+. You can highlight "Virt3" and hit enter to get into the submenu if you need to. Set step size, trim+, trim- etc. Step size 10 gives 10 clicks up and 10 clicks down. Save it.
+
+3. Go into the MIXER menu and find Virt3, set the mixer type as "simple", Src is Virt3, curve is 1-to-1, scale is 0 and offset is 0. Save it. The output of Virt3 is -100 to +100 with 0 being centre. You can check this in the Transmitter Menu/Channel Monitor Virt3 bar graph display.
+
+4. Go into the mixer menu and find the Ch11 mixer and set this: mixer type is complex, Mixers is 1, Page is 1, Switch is none, Mux is replace, Src is Virt3, Curve is 1-to-1, scale is 100, offest is 0, and set NO TRIM instead of TRIM. You can also set limits in the Ch11 first menu if required.
+
+5. Check the radio output in the Transmitter Menu/Channel Monitor, you should see the CH11 output following the trim switch.
+
+
 ## Current Experimental Features and DEVIATIONS FROM STOCK SILVERWARE 
 
  - Target Selection:  define your board type and hardware settings are automatically selected for E011 (OLD STYLE), Bwhoop, bwhoop pro, E011c, beta fpv lite, and ALIENWHOOP ZER0.  

@@ -126,6 +126,10 @@
 //#define ANALOG_Y_P   CHAN_14 // Adjust Yaw only
 //#define ANALOG_Y_I   CHAN_14
 //#define ANALOG_Y_D   CHAN_15
+// The following define can always be left uncommented. It just gathers all analog aux PID settings together into one define.
+#if defined USE_ANALOG_AUX && (defined ANALOG_R_P || defined ANALOG_R_I || defined ANALOG_R_D || defined ANALOG_P_P || defined ANALOG_P_I || defined ANALOG_P_D || defined ANALOG_Y_P || defined ANALOG_Y_I || defined ANALOG_Y_D || defined ANALOG_RP_P || defined ANALOG_RP_I || defined ANALOG_RP_D || defined ANALOG_RP_PD)
+    #define ANALOG_AUX_PIDS
+#endif
 
 
 //**********************************************************************************************************************
