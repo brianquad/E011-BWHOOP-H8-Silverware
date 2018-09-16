@@ -240,6 +240,11 @@
 // *************throttle angle compensation in level mode
 //#define AUTO_THROTTLE
 
+
+// Betaflight like mix scaling
+//#define MIX_SCALING
+
+
 // *************mix lower throttle reduces thrust imbalances by reducing throttle proportionally to the adjustable reduction percent
 // *************mix increase throttle increases the authority of the pid controller at lowest throttle values like airmode when combined with idle up
 // *************mix3 has a stronger effect and works better with brushless

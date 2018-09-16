@@ -1049,7 +1049,7 @@ char trims[4];
 			    aux[CH_FLIP] = (rxdata[2] & 0x08) ? 1 : 0;
 
 #ifdef USE_ANALOG_AUX
-			    aux[CH_EXPERT] = (rxdata[1] == 0xfa) ? 1 : 0;
+			    aux[CH_EXPERT] = (rxdata[1] > 0x7F) ? 1 : 0;
 #else
 			    aux[CH_EXPERT] = (rxdata[1] == 0xfa) ? 1 : 0;
 #endif
