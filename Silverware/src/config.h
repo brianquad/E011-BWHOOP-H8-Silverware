@@ -105,7 +105,7 @@
 // For some protocols, use Tx channels as auxiliary analog values
 // Bayang with analog aux protocol (Tx optional mode enabled in modified Multimodule and DeviationTx) has two analog channels available:
 //     Multimodule: channels 14 and 15
-//     Deviation: channels 11 and 12
+//     Deviation: channels 13 and 14
 // Sbus and DSM can use analog values from any channel
 // comment to disable
 #define USE_ANALOG_AUX
