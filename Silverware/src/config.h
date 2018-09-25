@@ -63,7 +63,7 @@
 // *******************************SWITCH SELECTION*****************************
 // *************CHAN_ON - on always ( all protocols)
 // *************CHAN_OFF - off always ( all protocols)
-// *************Aux channels are selectable as CHAN_5 through CHAN_10 for DEVO and MULTIMODULE users
+// *************Aux channels are selectable as CHAN_5 through CHAN_12 for DEVO and through CHAN_13 (but no CHAN_11) for MULTIMODULE users
 // *************Toy transmitter mapping is CHAN_5 (rates button), CHAN_6 (stick gestures RRD/LLD), 
 //**************CHAN_7 (headfree button), CHAN_8 (roll trim buttons), CHAN_9 (pitch trim buttons)
 
